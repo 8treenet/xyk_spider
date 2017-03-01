@@ -1,0 +1,16 @@
+[INFO  - 2017-03-01T09:01:30.148Z] GhostDriver - Main - running on port 58119
+[INFO  - 2017-03-01T09:01:31.054Z] Session [a97f6190-fe5d-11e6-92c1-130cac39a869] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":false,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36","webSecurityEnabled":true}
+[INFO  - 2017-03-01T09:01:31.054Z] Session [a97f6190-fe5d-11e6-92c1-130cac39a869] - page.customHeaders:  - {"Cookie":""}
+[INFO  - 2017-03-01T09:01:31.054Z] Session [a97f6190-fe5d-11e6-92c1-130cac39a869] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"linux-unknown-64bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"},"phantomjs.page.customHeaders.Cookie":"","phantomjs.page.settings.loadImages":false,"phantomjs.page.settings.userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"}
+[INFO  - 2017-03-01T09:01:31.054Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: a97f6190-fe5d-11e6-92c1-130cac39a869
+[ERROR - 2017-03-01T09:01:31.587Z] Session [a97f6190-fe5d-11e6-92c1-130cac39a869] - page.onError - msg: TypeError: null is not an object (evaluating 'document.getElementById('num').src = getImgCheckCode')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2017-03-01T09:01:31.588Z] Session [a97f6190-fe5d-11e6-92c1-130cac39a869] - page.onError - stack:
+  (anonymous function) (http://creditcard.ecitic.com/source/zh/kzx/js/youhui/allYouhui.js:67)
+  c (http://creditcard.ecitic.com/source/zh/kzx/js/jquery.js:3)
+  fireWith (http://creditcard.ecitic.com/source/zh/kzx/js/jquery.js:3)
+  ready (http://creditcard.ecitic.com/source/zh/kzx/js/jquery.js:3)
+  H (http://creditcard.ecitic.com/source/zh/kzx/js/jquery.js:3)
+
+  phantomjs://platform/console++.js:263 in error
