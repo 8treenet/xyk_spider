@@ -45,14 +45,23 @@ class EciticCrawler(CrawlerBase):
             if len(url) > 0 :
                 url = url[0]
                 if url.find('http://') < 0:
-                    url = 'http://creditcard.ecitic.com/' + url
+                    url = 'http://creditcard.ecitic.com' + url
             else:
                 url = ''
 
             info['name'] = name
             info['date'] = date
             info['url'] = url
+            info['beginDate'] = ''
+            info['endDate'] = ''
 
+            if date:
+                dateList = date.split('-')
+                if len(dateList) > 1:
+                    info['endDate'] = dateList[1].replace('/', '-')
+                    beginDate = dateList[0].split('：')
+                    if len(beginDate) > 1:
+                        info['beginDate'] = beginDate[1].replace('/', '-')
             result.append(info)
 
         return result
