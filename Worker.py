@@ -10,6 +10,7 @@ import json
 from crawler.EciticCrawler import *
 from crawler.SpdbCrawler import *
 from crawler.AgriculturalCrawler import *
+from crawler.CibCrawler import *
 from model.XykSpider import *
 import traceback
 
@@ -44,3 +45,12 @@ for url in agricu.urlList:
             continue
         db.add(agricu.bank_id, item['name'], item['date'], item['url'], item['beginDate'], item['endDate'])
 
+#兴业银行
+cib = CibCrawler()
+for url in cib.urlList:
+     cib.request(url, False)
+     list = cib.get()
+     for item in list:
+        if db.check(cib.bank_id, item['name'], item['url']):
+            continue
+        db.add(cib.bank_id, item['name'], item['date'], item['url'], item['beginDate'], item['endDate'])

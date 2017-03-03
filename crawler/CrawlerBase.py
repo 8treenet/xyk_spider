@@ -26,7 +26,7 @@ class CrawlerBase:
 
 
         time.sleep(timeSleep)
-        self._url = driver.current_url
+        self._url = url
         self._html = etree.HTML(driver.page_source)
         if autoClose:
             driver.quit()

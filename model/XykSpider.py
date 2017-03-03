@@ -36,7 +36,10 @@ class XykSpider:
 		cursor = XykSpider.db().cursor()
 		sql = "INSERT INTO s_spider (`bank_id`, `name`, `url`, `range_date`, `begin_date`, `end_date`, `time`) VALUES ( %d, '%s', '%s', '%s', %s,  %s, now())"
 		sql = sql % (bank_id, name, url, rangedate, beginDate, endDate)
-		cursor.execute(sql)
+		try:
+			cursor.execute(sql)
+		except:
+			print sql
 		XykSpider.db().commit()
 
 	@staticmethod
