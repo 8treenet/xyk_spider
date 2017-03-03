@@ -12,11 +12,11 @@ import hashlib
 import datetime
 import urlparse
 
-#浦发
-class SpdbCrawler(CrawlerBase):
-    urlList = ['http://ccc.spdb.com.cn/news/qgxhd/','http://ccc.spdb.com.cn/news/qyxhd/','http://ccc.spdb.com.cn/news/jwyhhd/','http://ccc.spdb.com.cn/news/sqjtjhd/']
-    url = 'http://ccc.spdb.com.cn/news/qyxhd/'
-    bank_id  = 4
+#广发银行
+class CgbCrawler(CrawlerBase):
+    urlList = ['http://card.cgbchina.com.cn/Channel/11820301','http://card.cgbchina.com.cn/Channel/11820220','http://card.cgbchina.com.cn/Channel/11820139','http://card.cgbchina.com.cn/Channel/15679698']
+    url = 'http://card.cgbchina.com.cn/Channel/11820301'
+    bank_id  = 7
     def __init__(self, *args, **kwargs):
         CrawlerBase.__init__(self, *args, **kwargs)
 
@@ -26,10 +26,6 @@ class SpdbCrawler(CrawlerBase):
     #返回基本信息
     def get(self):
         result = []
-        time.sleep(1)
-        button = self._driver.find_element_by_xpath(u'//a[@class="rowceil" and text() = "活动进行中"]')
-        button.click()
-
         while True:
             time.sleep(2)
             result.extend(self.getList())
@@ -43,9 +39,11 @@ class SpdbCrawler(CrawlerBase):
     def next(self):
         #解析当前页面是否可以跳转
         try:
-            page = self._driver.find_element_by_xpath(u'//*[@class="classPage" and text() = "下一页"]')
-            page.click()
-            return True
+            pages = self._driver.find_elements_by_xpath('//*[@id="subForm"]/div/span/a')
+            for page in pages:
+                if page.text.find(u'下一页') >= 0:
+                    page.click()
+                    return True
         except:
             return False
 
@@ -53,21 +51,24 @@ class SpdbCrawler(CrawlerBase):
     def getList(self):
         result = []
         html = etree.HTML(self._driver.page_source)
-        list = html.xpath('//div[@class="newsright_news"]')
+        list = html.xpath('//*[@class="youhui_content"]/ul')
         for item in list:
-            a  = item.xpath('a')
-            if len(a) <= 0:
+            li  = item.xpath('li')
+            if len(li) <= 0:
                 continue
-            a = a[0]
-            url = a.xpath('@href')
-            name = a.xpath('div[2]/text()')
-            date = a.xpath('div[3]/text()')
+            li = li[0]
+            url = li.xpath('h3/a/@href')
+            name = li.xpath('h3/a/text()')
+            date = li.xpath('p/text()')
 
             info = {}
             info['name'] = len(name) > 0 and name[0] or ''
+            info['name'] = info['name'].strip()
             info['date'] = len(date) > 0 and date[0] or ''
             info['url'] = len(url) > 0 and url[0] or ''
             info['beginDate'] = info['date']
             info['endDate'] = ''
+            if info['url'].find('http://') < 0:
+                info['url'] = 'http://card.cgbchina.com.cn' + info['url']
             result.append(info)
         return result

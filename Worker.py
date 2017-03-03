@@ -11,6 +11,7 @@ from crawler.EciticCrawler import *
 from crawler.SpdbCrawler import *
 from crawler.AgriculturalCrawler import *
 from crawler.CibCrawler import *
+from crawler.CgbCrawler import *
 from model.XykSpider import *
 import traceback
 
@@ -48,9 +49,20 @@ for url in agricu.urlList:
 #兴业银行
 cib = CibCrawler()
 for url in cib.urlList:
-     cib.request(url, False)
+     cib.request(url)
      list = cib.get()
      for item in list:
         if db.check(cib.bank_id, item['name'], item['url']):
             continue
         db.add(cib.bank_id, item['name'], item['date'], item['url'], item['beginDate'], item['endDate'])
+
+#广发银行
+cgb = CgbCrawler()
+for url in cgb.urlList:
+    cgb.request(url, False)
+    list = cgb.get()
+    for item in list:
+        if db.check(cgb.bank_id, item['name'], item['url']):
+            continue
+        db.add(cgb.bank_id, item['name'], item['date'], item['url'], item['beginDate'], item['endDate'])
+

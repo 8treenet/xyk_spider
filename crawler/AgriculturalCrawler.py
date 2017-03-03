@@ -12,7 +12,7 @@ import hashlib
 import datetime
 import urlparse
 
-
+#农业银行
 class AgriculturalCrawler(CrawlerBase):
     urlList = [
         'http://www.95599.cn/cn/CreditCard/Special0ffers/skyhsxlb/?value=24&typeName=%E9%A4%90%E9%A5%AE%E7%BE%8E%E9%A3%9F',

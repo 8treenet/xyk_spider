@@ -11,7 +11,7 @@ import hashlib
 import datetime
 import urlparse
 
-
+#兴业银行
 class CibCrawler(CrawlerBase):
     urlList = ['http://creditcard.cib.com.cn/promotion/national', 'http://creditcard.cib.com.cn/promotion/overseas/HKMacau',
                'http://creditcard.cib.com.cn/promotion/overseas/sales','http://creditcard.cib.com.cn/promotion/area']

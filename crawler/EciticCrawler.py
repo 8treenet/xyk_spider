@@ -11,7 +11,7 @@ import hashlib
 import datetime
 import urlparse
 
-
+#中信银行
 class EciticCrawler(CrawlerBase):
     url = 'http://creditcard.ecitic.com/youhui/shuakahuodong.shtml'
     bank_id  = 1
